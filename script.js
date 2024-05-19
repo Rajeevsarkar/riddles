@@ -20,7 +20,7 @@ fetch(apiUrl, requestOptions)
     <h5>${data.question}</h5>
     <button onclick="getanswer('${data.answer}')">Get answer</button>
     <button onclick="nextButton()">Next Riddle</button>
-    <button class="details" id="q-details" onclick="qshare('${data.question.replace(
+    <button onclick="qshare('${data.question.replace(
       /'/g,
       "\\'",
     )}')">share</button>
@@ -45,10 +45,7 @@ function nextButton() {
     <h5>${data.question}</h5>
     <button onclick="getanswer('${data.answer}')">Get answer</button>
     <button onclick="nextButton()">Next Riddle</button>
-    <button class="details" id="q-details" onclick="qshare('${data.question.replace(
-      /'/g,
-      "\\'",
-    )}')">share</button>
+    <button class="details" id="q-details" onclick="qshare('${data.question}')">share</button>
 
     `
     })
@@ -63,8 +60,7 @@ function getanswer(data) {
 async function qshare(data) {
   try {
     const shareData = {
-      title: 'question',
-      text: data.question,
+      text: data,
     }
     await navigator.share(shareData)
   } catch (e) {
